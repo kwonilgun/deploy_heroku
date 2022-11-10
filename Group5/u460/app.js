@@ -45,8 +45,9 @@ const store = new MongoDBStore({
 //csrf를 초기화 한다.
 const csrfProtection = csrf();
 
-const privateKey = fs.readFileSync("server.key");
-const certificate = fs.readFileSync("server.cert");
+// heroku에서는 필요가 없다. 
+// const privateKey = fs.readFileSync("server.key");
+// const certificate = fs.readFileSync("server.cert");
 
 //diskStroage is a storage engine which you can use with multer and there you can pass a javascript object to configure that. it takes two keys, it takes the destination and it takes file name.
 const fileStorage = multer.diskStorage({
