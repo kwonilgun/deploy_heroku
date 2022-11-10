@@ -1,0 +1,53 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
+    <main>
+        <% if (errorMessage) { %>
+            <!-- I added these two classes, one to have a general message look and then one for errors because maybe we also want to be able to output success messages later -->
+        <div class="user-message user-message--error"><%= errorMessage %></div>
+        <% } %>
+
+        <!-- 10월17일: Now one thing you can do is you can add no validate to the overall form, validate to disable the check . 사용자단에서 에러를 체크하지 못하게 한다.  novalidate가  -->
+
+        <form class="login-form" action="/signup" method="POST" novalidate>
+            <div class="form-control">
+                <label for="email">E-Mail</label>
+
+                <!-- how these inputs are named because 여기서 name = email은 req.body.email로 값을 전달한다. -->
+
+                <input 
+                    class ="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
+                    type="email" 
+                    name="email" 
+                    id="email" 
+                    value="<%= oldInput.email %>"
+                >
+            </div>
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input 
+                    class ="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>"
+                    type="password" 
+                    name="password" 
+                    id="password" 
+                    value="<%= oldInput.password %>">
+            </div>
+            <div class="form-control">
+                <label for="confirmPassword">Confirm Password</label>
+                <input 
+                    class ="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>"
+                    type="password" 
+                    name="confirmPassword" 
+                    id="confirmPassword" 
+                    value="<%= oldInput.confirmPassword%>">
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button class="btn" type="submit">Signup</button>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,8 @@
+
+{
+     "env": {
+          "MONGO_USER": "kwon",
+          "MONGO_PASSWORD": "thwls8404",
+          "MONGO_DEFAULT_DATABASE": "shop"
+     }
+}
